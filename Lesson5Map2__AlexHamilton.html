@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ArcGISonline to a webmap</title>
+<style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+<link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/css/main.css">
+<script src="https://js.arcgis.com/4.21/"></script>
+<script>
+    require([
+    "esri/WebMap",
+    "esri/views/SceneView",
+    "dojo/domReady!"
+    ], function(
+        WebMap,
+        SceneView)
+        {
+            var mywebmap = new WebMap({
+                portalItem:{
+                    id:"456acb0fca7a4050b8bb786a5ba8efff"
+                }
+            });
+            var myscene = new SceneView({
+                map: mywebmap,
+                container: "viewDiv",
+                camera:{
+                  position: {
+                    x: -120.5,
+                    y: 37,
+                    z: 450000},
+                    heading: 35,
+                    tilt: 60,
+                }
+            });
+        });</script>
+
+<script>
+    require(["esri/config","esri/Map", "esri/views/MapView"], function (esriConfig,Map, MapView) {
+        esriConfig.apiKey = "AAPKe536e33450c74ca9b2d868c52a35fa1aZpp_37uY0QQnOHBHmfiTitcPG3oIC68Z491p6nZm-ccWxYUi34rd4gNJm6Vtbaro";
+
+        const map = new Map({
+          basemap: "osm"
+        });
+        
+        const view = new MapView({
+          map: map,
+          center: [-82.101257, 39.329239], // Longitude, latitude
+          zoom: 13, // Zoom level
+          container: "viewDiv" // Div element
+        });
+    });
+  </script>
+</head>
+<body>
+ 
+<div id="viewDiv"> </div>
+
+</body>
+</html>
